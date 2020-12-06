@@ -36,3 +36,14 @@
 ```javascript
 import RNSalesforceChat from 'react-native-salesforce-chat';
 ```
+
+RNSalesforceChat has 3 methods we can use
+
+```javascript
+RNSalesforceChat.configLaunch(preChatSettings , userSettings)
+RNSalesforceChat.configChat(ORG_ID, DEPLOYMENT_ID, BUTTON_ID, LIVE_AGENT_POD, VISITOR_NAME)
+RNSalesforceChat.launch(callback function)
+```
+
+
+
