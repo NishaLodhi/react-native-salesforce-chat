@@ -185,6 +185,7 @@ public class RNSalesforceChatModule extends ReactContextBaseJavaModule {
         new ChatUIConfiguration.Builder()
           .chatConfiguration(chatConfiguration)
           .disablePreChatView(true)
+          .defaultToMinimized(false)
           .build();
         ChatUI.configure(chatUiConfiguration)
                 .createClient(reactContext)
