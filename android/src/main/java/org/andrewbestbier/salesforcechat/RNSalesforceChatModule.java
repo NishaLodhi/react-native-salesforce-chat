@@ -151,7 +151,7 @@ public class RNSalesforceChatModule extends ReactContextBaseJavaModule {
 
 
     @ReactMethod
-    public void launch(final Callback successCallback) {
+     public void launch(final Callback successCallback, final Callback errorCallback ) {
 
         // Create an agent availability client
         AgentAvailabilityClient client = ChatCore.configureAgentAvailability(chatConfiguration);
@@ -163,10 +163,11 @@ public class RNSalesforceChatModule extends ReactContextBaseJavaModule {
                 switch (state.getStatus()) {
                     case AgentsAvailable: {
                         startChat();
+                        successCallback.invoke();
                         break;
                     }
                     case NoAgentsAvailable: {
-                        successCallback.invoke();
+                        errorCallback.invoke();
                         break;
                     }
                     case Unknown: {
