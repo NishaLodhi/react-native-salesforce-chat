@@ -3,8 +3,8 @@ package org.andrewbestbier.salesforcechat;
 
 import java.util.LinkedList;
 
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -151,7 +151,7 @@ public class RNSalesforceChatModule extends ReactContextBaseJavaModule {
 
 
     @ReactMethod
-    public void launch(final Callback successCallback) {
+    public void launch(final Callback successCallback, final Callback errorCallback ) {
 
         // Create an agent availability client
         AgentAvailabilityClient client = ChatCore.configureAgentAvailability(chatConfiguration);
@@ -163,10 +163,11 @@ public class RNSalesforceChatModule extends ReactContextBaseJavaModule {
                 switch (state.getStatus()) {
                     case AgentsAvailable: {
                         startChat();
+                        successCallback.invoke();
                         break;
                     }
                     case NoAgentsAvailable: {
-                        successCallback.invoke();
+                        errorCallback.invoke();
                         break;
                     }
                     case Unknown: {
